@@ -1,1 +1,4 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+It returns a promise so we need to add the .then and .catch blocks to print the result or error.
+P1 takes more time to do, P2 just rejects fast thats why the error appears befor the sum prints in the output. (computationally expensive)
