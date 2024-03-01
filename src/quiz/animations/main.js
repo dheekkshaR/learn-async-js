@@ -13,19 +13,37 @@ const aliceTumbling = [
   const alice2 = document.querySelector("#alice2");
   const alice3 = document.querySelector("#alice3");
 
-  alice1
-    .animate(aliceTumbling, aliceTiming)
-    .finished
-    .then((res) => {
-        console.log(res);
-        alice2
-            .animate(aliceTumbling, aliceTiming)
-            .finished
-            .then((res) => {
-                console.log(res);
-                alice3.animate(aliceTumbling, aliceTiming);
-            })
-    });
+  async function animateAlice(element) {
+    const animation = element.animate(aliceTumbling, aliceTiming);
+    await animation.finished;
+    console.log('Animation finished for', element.id);
+  }
+
+  async function animateAllAlices() {
+    try {
+        await animateAlice(document.querySelector("#alice1"));
+        await animateAlice(document.querySelector("#alice2"));
+        await animateAlice(document.querySelector("#alice3"));
+    } catch (error) {
+        console.error('Error during animation:', error);
+    }
+  }
+
+  animateAllAlices();
+
+  // alice1
+  //   .animate(aliceTumbling, aliceTiming)
+  //   .finished
+  //   .then((res) => {
+  //       console.log(res);
+  //       alice2
+  //           .animate(aliceTumbling, aliceTiming)
+  //           .finished
+  //           .then((res) => {
+  //               console.log(res);
+  //               alice3.animate(aliceTumbling, aliceTiming);
+  //           })
+  //   });
 
   // Promise chain  
   // alice1.animate(aliceTumbling, aliceTiming).finished  
